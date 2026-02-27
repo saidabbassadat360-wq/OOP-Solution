@@ -1,0 +1,109 @@
+#include <iostream>
+using namespace std;
+
+class Library
+{
+	protected:
+	string tittle;
+	string Author;
+	int ID;
+	
+	public:
+	Library (string tittle, string Author, int ID)
+	{
+		this->tittle = tittle;
+		this->Author = Author;
+		this->ID = ID;
+	}
+	
+	virtual void display()
+	{}
+};
+
+class Book : public Library
+{
+	int page_number;
+	string genre;
+	
+	public:
+		Book (string tittle, string Author, int ID, int page_number, string genre) : Library (tittle, Author, ID)
+		{
+			this->page_number = page_number;
+			this->genre = genre;
+		}
+		
+	void display ()
+	{
+		cout <<"Tittle ----> "<<tittle <<endl;
+		cout <<"Author ----> "<<Author <<endl;
+		cout <<"ID num ----> "<<ID <<endl;
+		cout <<"Pages  ----> "<<page_number <<endl;
+		cout <<"Genre  ----> "<<genre <<endl;
+	}
+};
+
+class Magazine : public Library
+{
+	int issue_number;
+	string month;
+	
+	public:
+		Magazine (string tittle, string Author, int ID, int issue_number, string month) : Library (tittle, Author, ID)
+		{
+			this->issue_number = issue_number;
+			this->month = month;
+		}
+		
+		void display ()
+		{
+			cout <<"Tittle             ----> "<<tittle <<endl;
+			cout <<"Author             ----> "<<Author <<endl;
+			cout <<"ID num             ----> "<<ID <<endl;
+			cout <<"Issue Numbe        ----> "<<issue_number <<endl;
+			cout <<"Months of Publication----> "<<month <<endl;
+		}
+};
+
+class Audio_Book : public Library
+{
+	int duration;
+	string Narrator_name;
+	
+	public:
+		Audio_Book (string tittle, string Author, int ID, int duration, string Narrator_name) : Library (tittle, Author, ID)
+		{
+			this->duration = duration;
+			this->Narrator_name = Narrator_name;
+		}
+		
+		void display ()
+		{
+			cout <<"Tittle  ----> "<<tittle <<endl;
+			cout <<"Author  ----> "<<Author <<endl;
+			cout <<"ID num  ----> "<<ID <<endl;
+			cout <<"Duration----> "<<duration <<endl;
+			cout <<"Narrator   ----> "<<Narrator_name <<endl;
+		}
+};
+
+int main ()
+{
+	Book book1 ("C++", "Said Abbas", 10, 225, "Programming");
+	Book book2 ("Java", "Riaz Khan", 20, 325, "Programming");
+	book1.display();
+	cout <<endl;
+	book2.display();
+	cout <<endl;
+	Magazine magazine1 ("King", "John", 30, 5, "January");
+	magazine1.display ();
+	cout <<endl;
+	Magazine magazine2 ("King", "Tailor", 40, 6, "Fabruary");
+	magazine2.display ();
+	cout <<endl;
+	Audio_Book A1 ("Islam", "AmminUllah", 50, 65, "Hameed");
+	A1.display();
+	cout <<endl;
+	Audio_Book A2 ("Islam", "AmminUllah", 60, 103, "Hassan");
+	A2.display ();
+	cout <<endl;
+}
