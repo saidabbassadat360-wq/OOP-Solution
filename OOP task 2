@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+class DeliveryService
+{
+	protected:
+	int ID;
+	string name;
+	double cost;
+	
+	public:
+	
+	void displayInfo (int id, string name, double cost)
+	{
+		cout <<endl;
+		cout <<"Simple Delivery -----> "<<endl;
+		cout <<endl;
+		cout <<"  -----------------------------------"<<endl;
+		cout <<" |ID number : "<<id <<"                    |"<<endl;
+		cout <<" |Name      : "<<name <<"             |"<<endl;
+		cout <<" |Cost      : "<<cost <<"                 |"<<endl;
+		cout <<"  -----------------------------------"<<endl;
+	}
+};
+
+class ExpressDelivery : public DeliveryService
+{
+	string priority_level;
+	
+	public:
+		
+	using DeliveryService::displayInfo;
+	
+	void displayInfo (int id, string name, double cost, string priority)
+	{
+		cout <<endl;
+		cout <<"Express Delivery ----> "<<endl;
+		cout <<endl;
+		cout <<"  -----------------------------------------------"<<endl;
+		cout <<" |ID number      : "<<id <<"                           |"<<endl;
+		cout <<" |Name           : "<<name <<"                   |"<<endl;
+		cout <<" |Cost           : "<<cost <<"                         |"<<endl;
+		cout <<" |Priority level : "<<priority <<"                           |"<<endl;
+		cout <<"  -----------------------------------------------"<<endl;
+	}
+};
+
+int main ()
+{
+	ExpressDelivery D1;
+	cout <<"============ SMART DELIVERY SERVICE ============"<<endl;
+	cout <<endl;
+	D1.displayInfo(101, "Syed Abbas", 600.54); 
+	D1.displayInfo(202, "Shayan Shah", 200.6, "Low");
+}
