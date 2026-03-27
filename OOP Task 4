@@ -158,6 +158,8 @@ class Archer : public Character
 
 int main ()
 {
+	welcomeGame ();
+    cout <<endl;
 	Warrior W1 ("Said Abbas", "Warrior", 100, 62, 92.12, "Sword", 95.03, 20);
 	Mage M1 ("Shahid khan", "Magecion", 95, 52, 81.21, "Hand Blowing", 25.99, 16.87);
 	Archer A1 ("Ali khan", "Archer", 90, 42, 73.765, "Wood", 10, 50.0);
