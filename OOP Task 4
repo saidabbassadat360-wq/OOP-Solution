@@ -165,10 +165,12 @@ int main ()
 	W1.info();
 	M1.info();
 	A1.info();
+
+	cout <<endl;
 	welcomeGame ();
 	cout <<endl;
 
-	cout<<"-------Battle Simulation-------"<<endl;
+	cout<<"------- Battle Simulation -------"<<endl;
 	cout <<endl;
 
 	double W_Attack = W1.attack();
@@ -190,10 +192,11 @@ int main ()
 	cout <<"               Battle Summary              "<<endl;
 	cout <<"-------------------------------------------"<<endl;
 	cout<<endl;
-	cout<<"Hero\t\tAttack\tDefense"<<endl;
-	cout<<"Warrior\t\t"<<W_Attack<<"\t"<<W_Defend<<endl;
-	cout<<"Mage\t\t"<<M_Attack<<"\t"<<M_Defend<<endl;
-	cout<<"Archer\t\t"<<A_Attack<<"\t"<<A_Defend<<endl;
+	cout<<"Hero\t\tAttack\t\tDefense"<<endl;
+	cout <<endl;
+	cout<<"Warrior\t\t"<<W_Attack<<"\t\t"<<W_Defend<<endl;
+	cout<<"Mage\t\t"<<M_Attack<<"\t\t"<<M_Defend<<endl;
+	cout<<"Archer\t\t"<<A_Attack<<"\t\t"<<A_Defend<<endl;
 	cout<<endl;
 
 	cout<<"Highest Attack Hero -----> ";
