@@ -1,0 +1,207 @@
+#include <iostream>
+using namespace std;
+
+class Character
+{
+	protected:
+		string name;
+		string type;
+		int health_points;
+		int experience_points;
+		double power_level;
+		
+		Character (string name, string type, int health_points, int experience_points, double power_level)
+		{
+			this->name = name;
+			this->type = type;
+			this->health_points = health_points;
+			this->experience_points = experience_points;
+			this->power_level = power_level; 
+		}
+		
+	public:
+		void welcomeGame() 
+		{
+			cout <<"----------------------------------------------"<<endl;
+    		cout <<"     Welcome to the Fantasy Battle Arena!     "<<endl;
+    		cout <<"----------------------------------------------"<<endl;
+		}
+		
+		void displayinfo ()
+		{
+			cout <<"Name : "<<name <<endl;
+			cout <<"Hero type : "<<type <<endl;
+			cout <<"Helth points : "<<health_points <<endl;
+			cout <<"Power level : "<<experience_points <<endl;
+			cout <<"Experience Point : "<<power_level <<endl;
+		} 
+		
+		virtual double attack () = 0;
+		virtual double defence (double damage) = 0;
+	
+};
+
+class Warrior : public Character
+{
+	private:
+		string weapon_name;
+		double armor_strength;
+		int rage_level;
+	
+	public:	
+		Warrior (string name, string type, int health_points, int experience_points, double power_level, string weapon_name, 
+		double armor_strength, int rage_level) : Character (name, type, health_points, experience_points, power_level)
+		{
+			this->weapon_name = weapon_name;
+			this->armor_strength = armor_strength;
+			this->rage_level = rage_level;
+		}
+		
+		void info ()
+		{
+			cout <<endl;
+			cout <<"============= Warrior Information ============="<<endl;
+			cout <<endl;
+			displayinfo();
+			cout <<"Weapon Name : "<<weapon_name <<endl;
+			cout <<"Armor Strength : "<<armor_strength <<endl;
+			cout <<"Rage Level : "<<rage_level;
+		}
+		
+		double attack ()
+		{
+			return power_level *(1 + rage_level / 100.0);
+		}
+		
+		double defence (double damage)
+		{
+			return damage - (armor_strength * 0.5);
+		}
+};
+
+class Mage : public Character
+{
+	private:
+		string spell_name;
+		double mana_points;
+		double magic_multiplier;
+	
+	public:
+		Mage (string name, string type, int health_points, int experience_points, double power_level, string spell_name,
+		double mana_points, double magic_multiplier) : Character (name, type, health_points, experience_points, power_level)
+		{
+			this->spell_name = spell_name;
+			this->mana_points = mana_points;
+			this->magic_multiplier = magic_multiplier;
+		}
+	
+		void info ()
+		{
+			cout <<endl;
+			cout <<"============= Magecion Information ============="<<endl;
+			cout <<endl;
+			displayinfo ();
+			cout <<"Spell name : "<<spell_name <<endl;
+			cout <<"Mana_points : "<<mana_points <<endl;
+			cout <<"Magic_multiplier : "<<magic_multiplier <<endl;
+		}
+		
+		double attack ()
+		{
+			return power_level * magic_multiplier + mana_points * 0.3;
+		}
+		
+		double defence (double damage)
+		{
+			return damage - (mana_points * 0.2);
+		}
+};
+
+class Archer : public Character
+{
+	private:
+		string bow_type;
+		int numberof_arrows;
+		double accuracy_rate;
+	
+	public:	
+		Archer (string name, string type, int health_points, int experience_points, double power_level, string bow_type,
+		double numberof_arrows, double accuracy_rate) : Character (name, type, health_points, experience_points, power_level)
+		{
+			this->bow_type = bow_type;
+			this->numberof_arrows = numberof_arrows;
+			this->accuracy_rate = accuracy_rate;
+		}
+		
+		void info ()
+		{
+			cout <<endl;
+			cout <<"============= Archer Information ============="<<endl;
+			cout <<endl;
+			displayinfo ();
+			cout <<"Bow type : "<<bow_type <<endl;
+			cout <<"Number of arrows : "<<numberof_arrows <<endl;
+			cout <<"Accuracy rate : "<<accuracy_rate <<endl;
+		}
+		
+		double attack ()
+		{
+			return power_level * accuracy_rate + numberof_arrows * 0.1;
+		}
+		
+		double defence (double damage)
+		{
+			return damage - (accuracy_rate * 10);
+		}
+};
+
+
+int main ()
+{
+	Warrior W1 ("Said Abbas", "Warrior", 100, 62, 92.12, "Sword", 95.03, 20);
+	Mage M1 ("Shahid khan", "Magecion", 95, 52, 81.21, "Hand Blowing", 25.99, 16.87);
+	Archer A1 ("Ali khan", "Archer", 90, 42, 73.765, "Wood", 10, 50.0);
+	
+	W1.info();
+	M1.info();
+	A1.info();
+	
+	cout <<endl;
+	cout<<"-------Battle Simulation-------"<<endl;
+	cout <<endl;
+
+	double W_Attack = W1.attack();
+	double M_Attack = M1.attack();
+	double A_Attack = A1.attack();
+
+	double W_Defend = W1.defence(50);
+	double M_Defend = M1.defence(50);
+	double A_Defend = A1.defence(50);
+
+	cout<<"HERO BATTLE ACTIONS : "<<endl;
+	cout <<endl;
+	cout<<"Warrior Attack : "<<W_Attack<<" | Defense : "<<W_Defend<<endl;
+	cout<<"Mage    Attack : "<<M_Attack<<" | Defense : "<<M_Defend<<endl;
+	cout<<"Archer  Attack : "<<A_Attack<<" | Defense : "<<A_Defend<<endl;
+	cout<<endl;
+
+	cout <<"-------------------------------------------"<<endl;
+	cout <<"               Battle Summary              "<<endl;
+	cout <<"-------------------------------------------"<<endl;
+	cout<<endl;
+	cout<<"Hero\t\tAttack\tDefense"<<endl;
+	cout<<"Warrior\t\t"<<W_Attack<<"\t"<<W_Defend<<endl;
+	cout<<"Mage\t\t"<<M_Attack<<"\t"<<M_Defend<<endl;
+	cout<<"Archer\t\t"<<A_Attack<<"\t"<<A_Defend<<endl;
+	cout<<endl;
+
+	cout<<"Highest Attack Hero -----> ";
+	if (W_Attack > M_Attack && W_Attack > A_Attack)
+    	cout<<" WARRIOR "<<endl;
+    	
+	else if (M_Attack > A_Attack)
+    	cout<<" MAGECION "<<endl;
+    	
+	else
+    	cout<<" ARCHER "<<endl;
+}
